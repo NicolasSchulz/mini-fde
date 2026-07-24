@@ -2,11 +2,11 @@
 
 ## Spike outcome severity
 
-| Severity | Meaning | Required handling |
-|---|---|---|
-| `blocking` | The architecture cannot proceed without a resolved replacement. | Keep the compatibility gate unresolved, record a no-go if applicable, update/create an ADR, and block dependent production work. |
-| `degrading` | The baseline remains safe, but a feature or operational behavior is reduced. | Record the degraded behavior in run/release documentation, update the affected risk and ADR, and do not represent the feature as available. |
-| `informational` | The result is tuning input only. | Record the measurement and any resulting configuration rationale; it does not gate architecture progression. |
+| Severity        | Meaning                                                                      | Required handling                                                                                                                           |
+| --------------- | ---------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| `blocking`      | The architecture cannot proceed without a resolved replacement.              | Keep the compatibility gate unresolved, record a no-go if applicable, update/create an ADR, and block dependent production work.            |
+| `degrading`     | The baseline remains safe, but a feature or operational behavior is reduced. | Record the degraded behavior in run/release documentation, update the affected risk and ADR, and do not represent the feature as available. |
+| `informational` | The result is tuning input only.                                             | Record the measurement and any resulting configuration rationale; it does not gate architecture progression.                                |
 
 Severity describes the consequence of an unresolved or failed spike. It is not
 a likelihood score, an impact score, a production incident severity, or a
