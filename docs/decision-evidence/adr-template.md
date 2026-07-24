@@ -28,9 +28,9 @@ remain proposed/pending until linked executable evidence supports it.>
 
 ## Alternatives considered
 
-| Alternative | Outcome | Reason |
-|---|---|---|
-| <option> | accepted / rejected / deferred | <reason> |
+| Alternative | Outcome                        | Reason   |
+| ----------- | ------------------------------ | -------- |
+| <option>    | accepted / rejected / deferred | <reason> |
 
 ## Consequences
 
@@ -39,9 +39,9 @@ consequences.>
 
 ## Evidence and validation
 
-| Evidence record | Result | Version/environment | Raw evidence |
-|---|---|---|---|
-| <SPK-NNN link> | pending / go / no-go | <exact values> | <repository path or approved external location> |
+| Evidence record | Result               | Version/environment | Raw evidence                                    |
+| --------------- | -------------------- | ------------------- | ----------------------------------------------- |
+| <SPK-NNN link>  | pending / go / no-go | <exact values>      | <repository path or approved external location> |
 
 ## Follow-up
 
