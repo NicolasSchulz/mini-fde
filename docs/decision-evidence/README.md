@@ -1,9 +1,11 @@
-# Phase 1 decision and evidence baseline
+# Phase 0 validation decision and evidence baseline
 
-This directory implements the Phase 1 decision/evidence framework from the
-approved implementation plan. It is a reviewable place to record evidence; it
-is **not** evidence that any managed service, API, region, SDK, or deployment
-has been tested.
+This directory implements the Phase 0 validation exit criteria from the
+approved implementation plan. Its managed-service spike/evidence scaffolding
+and unresolved spikes are prerequisites for Phase 1, not Phase 1 work. It is
+a reviewable place to record evidence; it is **not** evidence that any managed
+service, API, region, SDK, or deployment has been tested. Phase 1 managed
+implementation cannot begin until the Phase 0 go decisions are completed.
 
 ## Contents
 
@@ -13,8 +15,8 @@ has been tested.
   their evidence gates.
 - [Spike evidence template](spike-evidence-template.md) — one record per
   executable managed-service experiment.
-- [Spike register](spike-register.md) — Phase 1 managed-service hypotheses
-  awaiting execution.
+- [Spike register](spike-register.md) — Phase 0 managed-service validation
+  exit criteria awaiting execution.
 - [Compatibility matrix](compatibility-matrix.md) — evolving/Preview surface
   gates and the consequences of incompatibility.
 - [Risk and severity convention](risk-severity.md) — shared interpretation of
@@ -24,12 +26,12 @@ has been tested.
 
 ## Current state
 
-All evidence-bearing entries in this directory are `not run` or `unresolved`.
-The master plan supplies the proposed/accepted architecture baseline, but this
-directory does not convert a baseline into a validated managed-service
-decision. A spike can be marked `go` only when its completed evidence record
-is linked from the register and contains the required version, environment,
-command, result, cost, and raw-evidence references.
+All evidence-bearing Phase 0 exit criteria in this directory are `not run` or
+`unresolved`. The master plan supplies the proposed/accepted architecture
+baseline, but this directory does not convert a baseline into a validated
+managed-service decision. A spike can be marked `go` only when its completed
+evidence record is linked from the register and contains the required version,
+environment, command, result, cost, and raw-evidence references.
 
 ## Recording workflow
 

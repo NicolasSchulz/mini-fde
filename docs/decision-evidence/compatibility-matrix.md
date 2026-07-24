@@ -1,8 +1,10 @@
 # Managed-service compatibility matrix
 
-This matrix lists the compatibility questions that must be answered by
-executable evidence. `Unresolved` means no compatibility assertion has been
-made; it does not imply the intended baseline is supported.
+This matrix lists the Phase 0 validation exit criteria that must be answered
+by executable evidence. `Unresolved` means no compatibility assertion has
+been made; it does not imply the intended baseline is supported. Phase 1
+managed implementation cannot begin until the Phase 0 go decisions are
+completed.
 
 | Surface | Intended baseline under evaluation | Compatibility evidence required | Evidence record | Status | Severity if incompatible | Required response |
 |---|---|---|---|---|---|---|

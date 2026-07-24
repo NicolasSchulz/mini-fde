@@ -1,9 +1,11 @@
 # Managed-service spike register
 
-All rows are planned hypotheses. No experiment has run, no API/SDK version has
-been observed, no cost has been incurred by this documentation, and no
-go/no-go decision has been made. Complete an
-[evidence record](spike-evidence-template.md) before changing a row's status.
+All rows are Phase 0 validation exit criteria represented by planned
+hypotheses. No experiment has run, no API/SDK version has been observed, no
+cost has been incurred by this documentation, and no go/no-go decision has
+been made. Complete an [evidence record](spike-evidence-template.md) before
+changing a row's status. Phase 1 managed implementation cannot begin until
+the Phase 0 go decisions are completed.
 
 | Spike | Hypothesis to test | Severity | Evidence fields that must be recorded | Current conclusion | Affected ADRs / risks |
 |---|---|---|---|---|---|

@@ -1,9 +1,11 @@
 # Managed-service spike evidence template
 
-Copy this file for each executed spike. A record is incomplete, and therefore
-cannot support a go/no-go conclusion, until every required field is populated.
-Do not put secrets, credentials, browser tokens, user content, or
-service-account keys in the record or raw artifacts.
+Copy this file for each Phase 0 validation-exit-criterion spike. A record is
+incomplete, and therefore cannot support a go/no-go conclusion, until every
+required field is populated. Do not put secrets, credentials, browser tokens,
+user content, or service-account keys in the record or raw artifacts. Phase 1
+managed implementation cannot begin until the Phase 0 go decisions are
+completed.
 
 ```markdown
 # SPK-NNN: <short hypothesis>
