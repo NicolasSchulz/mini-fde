@@ -1,0 +1,50 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - copilot/**
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    name: Local quality gates
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+      - name: Enable pnpm
+        run: corepack enable
+      - name: Install Node dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Check TypeScript formatting
+        run: pnpm format:check
+      - name: Lint TypeScript
+        run: pnpm lint
+      - name: Type-check TypeScript
+        run: pnpm typecheck
+      - name: Test TypeScript
+        run: pnpm test
+      - name: Build web harness
+        run: pnpm build
+      - uses: astral-sh/setup-uv@v5
+        with:
+          version: 0.6.16
+          enable-cache: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version-file: .python-version
+      - name: Install Python dependencies
+        run: uv sync --locked --all-groups
+      - name: Check Python formatting and lint
+        run: uv run ruff format --check . && uv run ruff check .
+      - name: Type-check Python
+        run: uv run mypy src tests
+      - name: Test Python
+        run: uv run pytest -m "not managed_dev"

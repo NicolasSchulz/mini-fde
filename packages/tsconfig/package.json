@@ -1,0 +1,8 @@
+{
+  "name": "@mini-fde/tsconfig",
+  "version": "0.1.0",
+  "private": true,
+  "files": [
+    "strict.json"
+  ]
+}

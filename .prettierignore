@@ -1,0 +1,4 @@
+README.md
+.venv/
+node_modules/
+**/dist/
