@@ -2,3 +2,6 @@ README.md
 .venv/
 node_modules/
 **/dist/
+# Generated Pydantic/OpenAPI snapshots are checked by their deterministic drift test.
+contracts/**/*.json
+packages/frontend-contracts/src/generated.ts

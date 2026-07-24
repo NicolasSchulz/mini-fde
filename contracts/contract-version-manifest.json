@@ -1,0 +1,11 @@
+{
+  "artifacts": {
+    "canonical_report": "contracts/report-schema/canonical-report.schema.json",
+    "corpus_manifest": "contracts/corpus-schema/corpus-manifest.schema.json",
+    "openapi": "contracts/openapi/local-contracts.openapi.json",
+    "public_event": "contracts/event-schema/public-event.schema.json",
+    "typescript_placeholder": "packages/frontend-contracts/src/generated.ts"
+  },
+  "contract_version": "1.0",
+  "scope": "local-provider-neutral-foundation"
+}

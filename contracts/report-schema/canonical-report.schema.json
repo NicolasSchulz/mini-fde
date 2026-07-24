@@ -1,0 +1,1026 @@
+{
+  "$defs": {
+    "Alternative": {
+      "additionalProperties": false,
+      "properties": {
+        "advantages": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Advantages",
+          "type": "array"
+        },
+        "alternative_id": {
+          "minLength": 1,
+          "title": "Alternative Id",
+          "type": "string"
+        },
+        "disadvantages": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Disadvantages",
+          "type": "array"
+        },
+        "option": {
+          "minLength": 1,
+          "title": "Option",
+          "type": "string"
+        },
+        "reconsider_when": {
+          "minLength": 1,
+          "title": "Reconsider When",
+          "type": "string"
+        },
+        "rejection_reason": {
+          "minLength": 1,
+          "title": "Rejection Reason",
+          "type": "string"
+        }
+      },
+      "required": [
+        "alternative_id",
+        "option",
+        "advantages",
+        "disadvantages",
+        "rejection_reason",
+        "reconsider_when"
+      ],
+      "title": "Alternative",
+      "type": "object",
+      "x-contract-version": "1.0"
+    },
+    "Assumption": {
+      "additionalProperties": false,
+      "properties": {
+        "assumption_id": {
+          "minLength": 1,
+          "title": "Assumption Id",
+          "type": "string"
+        },
+        "confidence": {
+          "enum": [
+            "low",
+            "medium",
+            "high"
+          ],
+          "title": "Confidence",
+          "type": "string"
+        },
+        "impact_if_wrong": {
+          "minLength": 1,
+          "title": "Impact If Wrong",
+          "type": "string"
+        },
+        "statement": {
+          "minLength": 1,
+          "title": "Statement",
+          "type": "string"
+        },
+        "validation_action": {
+          "minLength": 1,
+          "title": "Validation Action",
+          "type": "string"
+        }
+      },
+      "required": [
+        "assumption_id",
+        "statement",
+        "impact_if_wrong",
+        "validation_action",
+        "confidence"
+      ],
+      "title": "Assumption",
+      "type": "object",
+      "x-contract-version": "1.0"
+    },
+    "Claim": {
+      "additionalProperties": false,
+      "properties": {
+        "citation_source_ids": {
+          "items": {
+            "pattern": "^S[1-9][0-9]*$",
+            "type": "string"
+          },
+          "title": "Citation Source Ids",
+          "type": "array"
+        },
+        "claim_id": {
+          "minLength": 1,
+          "title": "Claim Id",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "factual",
+            "recommendation",
+            "assumption",
+            "limitation"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "support": {
+          "enum": [
+            "direct",
+            "synthesized",
+            "assumed",
+            "unsupported"
+          ],
+          "title": "Support",
+          "type": "string"
+        },
+        "text": {
+          "minLength": 1,
+          "title": "Text",
+          "type": "string"
+        }
+      },
+      "required": [
+        "claim_id",
+        "text",
+        "kind",
+        "citation_source_ids",
+        "support"
+      ],
+      "title": "Claim",
+      "type": "object",
+      "x-contract-version": "1.0"
+    },
+    "Confidence": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence_coverage_score": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Evidence Coverage Score",
+          "type": "number"
+        },
+        "limitations": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Limitations",
+          "type": "array"
+        },
+        "overall": {
+          "enum": [
+            "low",
+            "medium",
+            "high"
+          ],
+          "title": "Overall",
+          "type": "string"
+        },
+        "requirement_coverage_score": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Requirement Coverage Score",
+          "type": "number"
+        },
+        "unresolved_assumption_count": {
+          "minimum": 0,
+          "title": "Unresolved Assumption Count",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "overall",
+        "evidence_coverage_score",
+        "requirement_coverage_score",
+        "unresolved_assumption_count",
+        "limitations"
+      ],
+      "title": "Confidence",
+      "type": "object",
+      "x-contract-version": "1.0"
+    },
+    "Diagram": {
+      "additionalProperties": false,
+      "properties": {
+        "diagram_id": {
+          "minLength": 1,
+          "title": "Diagram Id",
+          "type": "string"
+        },
+        "kind": {
+          "const": "flowchart",
+          "title": "Kind",
+          "type": "string"
+        },
+        "mermaid_version": {
+          "minLength": 1,
+          "title": "Mermaid Version",
+          "type": "string"
+        },
+        "source": {
+          "minLength": 1,
+          "title": "Source",
+          "type": "string"
+        },
+        "source_hash": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Source Hash",
+          "type": "string"
+        },
+        "text_description": {
+          "minLength": 1,
+          "title": "Text Description",
+          "type": "string"
+        },
+        "validation_status": {
+          "const": "valid",
+          "title": "Validation Status",
+          "type": "string"
+        }
+      },
+      "required": [
+        "diagram_id",
+        "kind",
+        "mermaid_version",
+        "source",
+        "text_description",
+        "validation_status",
+        "source_hash"
+      ],
+      "title": "Diagram",
+      "type": "object",
+      "x-contract-version": "1.0"
+    },
+    "ImplementationPhase": {
+      "additionalProperties": false,
+      "properties": {
+        "dependencies": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Dependencies",
+          "type": "array"
+        },
+        "exit_criteria": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Exit Criteria",
+          "type": "array"
+        },
+        "name": {
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "objective": {
+          "minLength": 1,
+          "title": "Objective",
+          "type": "string"
+        },
+        "phase_id": {
+          "minLength": 1,
+          "title": "Phase Id",
+          "type": "string"
+        },
+        "tasks": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Tasks",
+          "type": "array"
+        }
+      },
+      "required": [
+        "phase_id",
+        "name",
+        "objective",
+        "dependencies",
+        "tasks",
+        "exit_criteria"
+      ],
+      "title": "ImplementationPhase",
+      "type": "object",
+      "x-contract-version": "1.0"
+    },
+    "ModelCallRecord": {
+      "additionalProperties": false,
+      "properties": {
+        "duration_ms": {
+          "minimum": 0,
+          "title": "Duration Ms",
+          "type": "integer"
+        },
+        "error_category": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Error Category"
+        },
+        "finish_reason": {
+          "minLength": 1,
+          "title": "Finish Reason",
+          "type": "string"
+        },
+        "input_tokens": {
+          "minimum": 0,
+          "title": "Input Tokens",
+          "type": "integer"
+        },
+        "model_id": {
+          "minLength": 1,
+          "title": "Model Id",
+          "type": "string"
+        },
+        "output_tokens": {
+          "minimum": 0,
+          "title": "Output Tokens",
+          "type": "integer"
+        },
+        "prompt_version": {
+          "minLength": 1,
+          "title": "Prompt Version",
+          "type": "string"
+        },
+        "resolved_model_version": {
+          "minLength": 1,
+          "title": "Resolved Model Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "model_id",
+        "resolved_model_version",
+        "prompt_version",
+        "input_tokens",
+        "output_tokens",
+        "duration_ms",
+        "finish_reason",
+        "error_category"
+      ],
+      "title": "ModelCallRecord",
+      "type": "object",
+      "x-contract-version": "1.0"
+    },
+    "Requirement": {
+      "additionalProperties": false,
+      "properties": {
+        "category": {
+          "enum": [
+            "business",
+            "functional",
+            "security",
+            "privacy",
+            "reliability",
+            "performance",
+            "cost",
+            "operations",
+            "data",
+            "integration"
+          ],
+          "title": "Category",
+          "type": "string"
+        },
+        "evidence_needed": {
+          "title": "Evidence Needed",
+          "type": "boolean"
+        },
+        "priority": {
+          "enum": [
+            "must",
+            "should",
+            "could"
+          ],
+          "title": "Priority",
+          "type": "string"
+        },
+        "requirement_id": {
+          "minLength": 1,
+          "title": "Requirement Id",
+          "type": "string"
+        },
+        "source": {
+          "enum": [
+            "user",
+            "clarification",
+            "derived"
+          ],
+          "title": "Source",
+          "type": "string"
+        },
+        "statement": {
+          "minLength": 1,
+          "title": "Statement",
+          "type": "string"
+        }
+      },
+      "required": [
+        "requirement_id",
+        "category",
+        "statement",
+        "priority",
+        "source",
+        "evidence_needed"
+      ],
+      "title": "Requirement",
+      "type": "object",
+      "x-contract-version": "1.0"
+    },
+    "Risk": {
+      "additionalProperties": false,
+      "properties": {
+        "description": {
+          "minLength": 1,
+          "title": "Description",
+          "type": "string"
+        },
+        "impact": {
+          "enum": [
+            "low",
+            "medium",
+            "high",
+            "critical"
+          ],
+          "title": "Impact",
+          "type": "string"
+        },
+        "likelihood": {
+          "enum": [
+            "low",
+            "medium",
+            "high"
+          ],
+          "title": "Likelihood",
+          "type": "string"
+        },
+        "mitigation": {
+          "minLength": 1,
+          "title": "Mitigation",
+          "type": "string"
+        },
+        "owner_role": {
+          "minLength": 1,
+          "title": "Owner Role",
+          "type": "string"
+        },
+        "residual_risk": {
+          "minLength": 1,
+          "title": "Residual Risk",
+          "type": "string"
+        },
+        "risk_id": {
+          "minLength": 1,
+          "title": "Risk Id",
+          "type": "string"
+        },
+        "trigger": {
+          "minLength": 1,
+          "title": "Trigger",
+          "type": "string"
+        }
+      },
+      "required": [
+        "risk_id",
+        "description",
+        "likelihood",
+        "impact",
+        "mitigation",
+        "trigger",
+        "owner_role",
+        "residual_risk"
+      ],
+      "title": "Risk",
+      "type": "object",
+      "x-contract-version": "1.0"
+    },
+    "ServiceRecommendation": {
+      "additionalProperties": false,
+      "properties": {
+        "alternatives_rejected": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Alternatives Rejected",
+          "type": "array"
+        },
+        "claim_ids": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Claim Ids",
+          "type": "array"
+        },
+        "configuration": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Configuration",
+          "type": "array"
+        },
+        "data_handled": {
+          "minLength": 1,
+          "title": "Data Handled",
+          "type": "string"
+        },
+        "location": {
+          "minLength": 1,
+          "title": "Location",
+          "type": "string"
+        },
+        "rationale": {
+          "minLength": 1,
+          "title": "Rationale",
+          "type": "string"
+        },
+        "role": {
+          "minLength": 1,
+          "title": "Role",
+          "type": "string"
+        },
+        "scaling_and_cost_posture": {
+          "minLength": 1,
+          "title": "Scaling And Cost Posture",
+          "type": "string"
+        },
+        "security_controls": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Security Controls",
+          "type": "array"
+        },
+        "service_id": {
+          "minLength": 1,
+          "title": "Service Id",
+          "type": "string"
+        },
+        "service_name": {
+          "minLength": 1,
+          "title": "Service Name",
+          "type": "string"
+        }
+      },
+      "required": [
+        "service_id",
+        "service_name",
+        "role",
+        "location",
+        "data_handled",
+        "configuration",
+        "scaling_and_cost_posture",
+        "security_controls",
+        "rationale",
+        "alternatives_rejected",
+        "claim_ids"
+      ],
+      "title": "ServiceRecommendation",
+      "type": "object",
+      "x-contract-version": "1.0"
+    },
+    "Source": {
+      "additionalProperties": false,
+      "properties": {
+        "canonical_url": {
+          "format": "uri",
+          "minLength": 1,
+          "title": "Canonical Url",
+          "type": "string"
+        },
+        "content_hash": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Content Hash",
+          "type": "string"
+        },
+        "corpus_version": {
+          "minLength": 1,
+          "title": "Corpus Version",
+          "type": "string"
+        },
+        "crawled_at": {
+          "format": "date-time",
+          "title": "Crawled At",
+          "type": "string"
+        },
+        "document_type": {
+          "enum": [
+            "product_documentation",
+            "architecture_center",
+            "security_guidance",
+            "operations_guidance",
+            "pricing",
+            "lifecycle_notice"
+          ],
+          "title": "Document Type",
+          "type": "string"
+        },
+        "official_domain": {
+          "pattern": "^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?(?:\\.[a-z0-9-]+)+$",
+          "title": "Official Domain",
+          "type": "string"
+        },
+        "product_tags": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Product Tags",
+          "type": "array"
+        },
+        "retrieved_chunk_ids": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Retrieved Chunk Ids",
+          "type": "array"
+        },
+        "section_path": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Section Path",
+          "type": "array"
+        },
+        "source_id": {
+          "pattern": "^S[1-9][0-9]*$",
+          "title": "Source Id",
+          "type": "string"
+        },
+        "source_updated_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Source Updated At"
+        },
+        "title": {
+          "minLength": 1,
+          "title": "Title",
+          "type": "string"
+        }
+      },
+      "required": [
+        "source_id",
+        "title",
+        "canonical_url",
+        "official_domain",
+        "document_type",
+        "product_tags",
+        "section_path",
+        "retrieved_chunk_ids",
+        "source_updated_at",
+        "crawled_at",
+        "corpus_version",
+        "content_hash"
+      ],
+      "title": "Source",
+      "type": "object",
+      "x-contract-version": "1.0"
+    },
+    "ValidationSummary": {
+      "additionalProperties": false,
+      "properties": {
+        "outcome": {
+          "const": "passed",
+          "title": "Outcome",
+          "type": "string"
+        },
+        "report_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Report Sha256",
+          "type": "string"
+        },
+        "validator_version": {
+          "minLength": 1,
+          "title": "Validator Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "outcome",
+        "validator_version",
+        "report_sha256"
+      ],
+      "title": "ValidationSummary",
+      "type": "object",
+      "x-contract-version": "1.0"
+    },
+    "VerifierSummary": {
+      "additionalProperties": false,
+      "properties": {
+        "finding_count": {
+          "minimum": 0,
+          "title": "Finding Count",
+          "type": "integer"
+        },
+        "outcome": {
+          "enum": [
+            "passed",
+            "failed",
+            "repaired"
+          ],
+          "title": "Outcome",
+          "type": "string"
+        },
+        "verifier_version": {
+          "minLength": 1,
+          "title": "Verifier Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "outcome",
+        "finding_count",
+        "verifier_version"
+      ],
+      "title": "VerifierSummary",
+      "type": "object",
+      "x-contract-version": "1.0"
+    }
+  },
+  "additionalProperties": false,
+  "description": "The immutable, versioned document from which all renderings derive.",
+  "properties": {
+    "alternatives": {
+      "items": {
+        "$ref": "#/$defs/Alternative"
+      },
+      "title": "Alternatives",
+      "type": "array"
+    },
+    "assumptions": {
+      "items": {
+        "$ref": "#/$defs/Assumption"
+      },
+      "title": "Assumptions",
+      "type": "array"
+    },
+    "claims": {
+      "items": {
+        "$ref": "#/$defs/Claim"
+      },
+      "minItems": 1,
+      "title": "Claims",
+      "type": "array"
+    },
+    "confidence": {
+      "$ref": "#/$defs/Confidence"
+    },
+    "conversation_id": {
+      "format": "uuid",
+      "title": "Conversation Id",
+      "type": "string"
+    },
+    "corpus_version": {
+      "minLength": 1,
+      "title": "Corpus Version",
+      "type": "string"
+    },
+    "cost_drivers": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Cost Drivers",
+      "type": "array"
+    },
+    "data_flow": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Data Flow",
+      "type": "array"
+    },
+    "design_as_of_date": {
+      "format": "date",
+      "title": "Design As Of Date",
+      "type": "string"
+    },
+    "diagram": {
+      "$ref": "#/$defs/Diagram"
+    },
+    "executive_summary": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Executive Summary",
+      "type": "array"
+    },
+    "generated_at": {
+      "format": "date-time",
+      "title": "Generated At",
+      "type": "string"
+    },
+    "graph_version": {
+      "minLength": 1,
+      "title": "Graph Version",
+      "type": "string"
+    },
+    "implementation_phases": {
+      "items": {
+        "$ref": "#/$defs/ImplementationPhase"
+      },
+      "minItems": 1,
+      "title": "Implementation Phases",
+      "type": "array"
+    },
+    "model_config_version": {
+      "minLength": 1,
+      "title": "Model Config Version",
+      "type": "string"
+    },
+    "model_records": {
+      "items": {
+        "$ref": "#/$defs/ModelCallRecord"
+      },
+      "title": "Model Records",
+      "type": "array"
+    },
+    "open_questions": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": "Open Questions",
+      "type": "array"
+    },
+    "pricing_links": {
+      "items": {
+        "format": "uri",
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": "Pricing Links",
+      "type": "array"
+    },
+    "problem_framing": {
+      "minLength": 1,
+      "title": "Problem Framing",
+      "type": "string"
+    },
+    "prompt_bundle_version": {
+      "minLength": 1,
+      "title": "Prompt Bundle Version",
+      "type": "string"
+    },
+    "recommended_architecture": {
+      "minLength": 1,
+      "title": "Recommended Architecture",
+      "type": "string"
+    },
+    "reliability_and_operations": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Reliability And Operations",
+      "type": "array"
+    },
+    "rendering_contract_version": {
+      "const": "1.0",
+      "default": "1.0",
+      "title": "Rendering Contract Version",
+      "type": "string"
+    },
+    "report_id": {
+      "format": "uuid",
+      "title": "Report Id",
+      "type": "string"
+    },
+    "report_version_id": {
+      "format": "uuid",
+      "title": "Report Version Id",
+      "type": "string"
+    },
+    "requirements": {
+      "items": {
+        "$ref": "#/$defs/Requirement"
+      },
+      "minItems": 1,
+      "title": "Requirements",
+      "type": "array"
+    },
+    "risks": {
+      "items": {
+        "$ref": "#/$defs/Risk"
+      },
+      "title": "Risks",
+      "type": "array"
+    },
+    "run_id": {
+      "format": "uuid",
+      "title": "Run Id",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "1.0",
+      "default": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "security_and_privacy": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Security And Privacy",
+      "type": "array"
+    },
+    "services": {
+      "items": {
+        "$ref": "#/$defs/ServiceRecommendation"
+      },
+      "minItems": 1,
+      "title": "Services",
+      "type": "array"
+    },
+    "sources": {
+      "items": {
+        "$ref": "#/$defs/Source"
+      },
+      "minItems": 1,
+      "title": "Sources",
+      "type": "array"
+    },
+    "title": {
+      "minLength": 1,
+      "title": "Title",
+      "type": "string"
+    },
+    "validation_summary": {
+      "$ref": "#/$defs/ValidationSummary"
+    },
+    "verifier_summary": {
+      "$ref": "#/$defs/VerifierSummary"
+    },
+    "version": {
+      "maximum": 4,
+      "minimum": 1,
+      "title": "Version",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "report_id",
+    "report_version_id",
+    "conversation_id",
+    "run_id",
+    "version",
+    "title",
+    "generated_at",
+    "design_as_of_date",
+    "corpus_version",
+    "graph_version",
+    "prompt_bundle_version",
+    "model_config_version",
+    "model_records",
+    "executive_summary",
+    "problem_framing",
+    "assumptions",
+    "open_questions",
+    "requirements",
+    "recommended_architecture",
+    "services",
+    "diagram",
+    "data_flow",
+    "security_and_privacy",
+    "reliability_and_operations",
+    "cost_drivers",
+    "pricing_links",
+    "risks",
+    "alternatives",
+    "implementation_phases",
+    "confidence",
+    "claims",
+    "sources",
+    "verifier_summary",
+    "validation_summary"
+  ],
+  "title": "CanonicalReport",
+  "type": "object",
+  "x-contract-version": "1.0"
+}

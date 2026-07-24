@@ -1,0 +1,90 @@
+{
+  "$defs": {
+    "SourceManifestEntry": {
+      "additionalProperties": false,
+      "properties": {
+        "document_type": {
+          "enum": [
+            "product_documentation",
+            "architecture_center",
+            "security_guidance",
+            "operations_guidance",
+            "pricing",
+            "lifecycle_notice"
+          ],
+          "title": "Document Type",
+          "type": "string"
+        },
+        "expected_official_domain": {
+          "minLength": 1,
+          "title": "Expected Official Domain",
+          "type": "string"
+        },
+        "product_tags": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Product Tags",
+          "type": "array"
+        },
+        "source_url": {
+          "format": "uri",
+          "minLength": 1,
+          "title": "Source Url",
+          "type": "string"
+        }
+      },
+      "required": [
+        "source_url",
+        "document_type",
+        "product_tags",
+        "expected_official_domain"
+      ],
+      "title": "SourceManifestEntry",
+      "type": "object",
+      "x-contract-version": "1.0"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "corpus_version": {
+      "minLength": 1,
+      "title": "Corpus Version",
+      "type": "string"
+    },
+    "generated_at": {
+      "format": "date-time",
+      "title": "Generated At",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "1.0",
+      "default": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "source_rules_commit": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Source Rules Commit",
+      "type": "string"
+    },
+    "sources": {
+      "items": {
+        "$ref": "#/$defs/SourceManifestEntry"
+      },
+      "minItems": 1,
+      "title": "Sources",
+      "type": "array"
+    }
+  },
+  "required": [
+    "corpus_version",
+    "source_rules_commit",
+    "generated_at",
+    "sources"
+  ],
+  "title": "CorpusManifest",
+  "type": "object",
+  "x-contract-version": "1.0"
+}
