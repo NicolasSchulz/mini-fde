@@ -1,0 +1,396 @@
+{
+  "$defs": {
+    "ClarificationRequiredEvent": {
+      "additionalProperties": false,
+      "properties": {
+        "emitted_at": {
+          "format": "date-time",
+          "title": "Emitted At",
+          "type": "string"
+        },
+        "event": {
+          "const": "clarification.required",
+          "title": "Event",
+          "type": "string"
+        },
+        "event_id": {
+          "format": "uuid",
+          "title": "Event Id",
+          "type": "string"
+        },
+        "question_ids": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 3,
+          "minItems": 1,
+          "title": "Question Ids",
+          "type": "array"
+        },
+        "run_id": {
+          "format": "uuid",
+          "title": "Run Id",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "1.0",
+          "default": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "event_id",
+        "run_id",
+        "emitted_at",
+        "event",
+        "question_ids"
+      ],
+      "title": "ClarificationRequiredEvent",
+      "type": "object",
+      "x-contract-version": "1.0"
+    },
+    "PhaseCompletedEvent": {
+      "additionalProperties": false,
+      "properties": {
+        "emitted_at": {
+          "format": "date-time",
+          "title": "Emitted At",
+          "type": "string"
+        },
+        "event": {
+          "const": "phase.completed",
+          "title": "Event",
+          "type": "string"
+        },
+        "event_id": {
+          "format": "uuid",
+          "title": "Event Id",
+          "type": "string"
+        },
+        "phase": {
+          "enum": [
+            "understanding",
+            "retrieving",
+            "assessing",
+            "designing",
+            "verifying",
+            "finalizing"
+          ],
+          "title": "Phase",
+          "type": "string"
+        },
+        "run_id": {
+          "format": "uuid",
+          "title": "Run Id",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "1.0",
+          "default": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "event_id",
+        "run_id",
+        "emitted_at",
+        "event",
+        "phase"
+      ],
+      "title": "PhaseCompletedEvent",
+      "type": "object",
+      "x-contract-version": "1.0"
+    },
+    "PhaseStartedEvent": {
+      "additionalProperties": false,
+      "properties": {
+        "emitted_at": {
+          "format": "date-time",
+          "title": "Emitted At",
+          "type": "string"
+        },
+        "event": {
+          "const": "phase.started",
+          "title": "Event",
+          "type": "string"
+        },
+        "event_id": {
+          "format": "uuid",
+          "title": "Event Id",
+          "type": "string"
+        },
+        "phase": {
+          "enum": [
+            "understanding",
+            "retrieving",
+            "assessing",
+            "designing",
+            "verifying",
+            "finalizing"
+          ],
+          "title": "Phase",
+          "type": "string"
+        },
+        "run_id": {
+          "format": "uuid",
+          "title": "Run Id",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "1.0",
+          "default": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "event_id",
+        "run_id",
+        "emitted_at",
+        "event",
+        "phase"
+      ],
+      "title": "PhaseStartedEvent",
+      "type": "object",
+      "x-contract-version": "1.0"
+    },
+    "ReportReference": {
+      "additionalProperties": false,
+      "properties": {
+        "conversation_id": {
+          "format": "uuid",
+          "title": "Conversation Id",
+          "type": "string"
+        },
+        "report_version_id": {
+          "format": "uuid",
+          "title": "Report Version Id",
+          "type": "string"
+        },
+        "resource_path": {
+          "pattern": "^/v1/reports/[0-9a-f-]{36}$",
+          "title": "Resource Path",
+          "type": "string"
+        },
+        "version": {
+          "maximum": 4,
+          "minimum": 1,
+          "title": "Version",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "report_version_id",
+        "conversation_id",
+        "version",
+        "resource_path"
+      ],
+      "title": "ReportReference",
+      "type": "object",
+      "x-contract-version": "1.0"
+    },
+    "RunAcceptedEvent": {
+      "additionalProperties": false,
+      "properties": {
+        "emitted_at": {
+          "format": "date-time",
+          "title": "Emitted At",
+          "type": "string"
+        },
+        "event": {
+          "const": "run.accepted",
+          "title": "Event",
+          "type": "string"
+        },
+        "event_id": {
+          "format": "uuid",
+          "title": "Event Id",
+          "type": "string"
+        },
+        "phase": {
+          "const": "accepted",
+          "title": "Phase",
+          "type": "string"
+        },
+        "run_id": {
+          "format": "uuid",
+          "title": "Run Id",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "1.0",
+          "default": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "event_id",
+        "run_id",
+        "emitted_at",
+        "event",
+        "phase"
+      ],
+      "title": "RunAcceptedEvent",
+      "type": "object",
+      "x-contract-version": "1.0"
+    },
+    "RunCompletedEvent": {
+      "additionalProperties": false,
+      "properties": {
+        "emitted_at": {
+          "format": "date-time",
+          "title": "Emitted At",
+          "type": "string"
+        },
+        "event": {
+          "const": "run.completed",
+          "title": "Event",
+          "type": "string"
+        },
+        "event_id": {
+          "format": "uuid",
+          "title": "Event Id",
+          "type": "string"
+        },
+        "input_tokens_used": {
+          "minimum": 0,
+          "title": "Input Tokens Used",
+          "type": "integer"
+        },
+        "model_calls_used": {
+          "minimum": 0,
+          "title": "Model Calls Used",
+          "type": "integer"
+        },
+        "output_tokens_used": {
+          "minimum": 0,
+          "title": "Output Tokens Used",
+          "type": "integer"
+        },
+        "report_ref": {
+          "$ref": "#/$defs/ReportReference"
+        },
+        "run_id": {
+          "format": "uuid",
+          "title": "Run Id",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "1.0",
+          "default": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "event_id",
+        "run_id",
+        "emitted_at",
+        "event",
+        "report_ref",
+        "model_calls_used",
+        "input_tokens_used",
+        "output_tokens_used"
+      ],
+      "title": "RunCompletedEvent",
+      "type": "object",
+      "x-contract-version": "1.0"
+    },
+    "RunFailedEvent": {
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "minLength": 1,
+          "title": "Code",
+          "type": "string"
+        },
+        "emitted_at": {
+          "format": "date-time",
+          "title": "Emitted At",
+          "type": "string"
+        },
+        "event": {
+          "const": "run.failed",
+          "title": "Event",
+          "type": "string"
+        },
+        "event_id": {
+          "format": "uuid",
+          "title": "Event Id",
+          "type": "string"
+        },
+        "outcome": {
+          "enum": [
+            "failed",
+            "cancelled",
+            "timed_out"
+          ],
+          "title": "Outcome",
+          "type": "string"
+        },
+        "retryable": {
+          "title": "Retryable",
+          "type": "boolean"
+        },
+        "run_id": {
+          "format": "uuid",
+          "title": "Run Id",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "1.0",
+          "default": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "event_id",
+        "run_id",
+        "emitted_at",
+        "event",
+        "outcome",
+        "code",
+        "retryable"
+      ],
+      "title": "RunFailedEvent",
+      "type": "object",
+      "x-contract-version": "1.0"
+    }
+  },
+  "discriminator": {
+    "mapping": {
+      "clarification.required": "#/$defs/ClarificationRequiredEvent",
+      "phase.completed": "#/$defs/PhaseCompletedEvent",
+      "phase.started": "#/$defs/PhaseStartedEvent",
+      "run.accepted": "#/$defs/RunAcceptedEvent",
+      "run.completed": "#/$defs/RunCompletedEvent",
+      "run.failed": "#/$defs/RunFailedEvent"
+    },
+    "propertyName": "event"
+  },
+  "oneOf": [
+    {
+      "$ref": "#/$defs/RunAcceptedEvent"
+    },
+    {
+      "$ref": "#/$defs/PhaseStartedEvent"
+    },
+    {
+      "$ref": "#/$defs/PhaseCompletedEvent"
+    },
+    {
+      "$ref": "#/$defs/ClarificationRequiredEvent"
+    },
+    {
+      "$ref": "#/$defs/RunCompletedEvent"
+    },
+    {
+      "$ref": "#/$defs/RunFailedEvent"
+    }
+  ]
+}

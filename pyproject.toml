@@ -4,7 +4,10 @@ version = "0.1.0"
 description = "Local tooling baseline for mini-fde"
 readme = "README.md"
 requires-python = ">=3.12,<3.13"
-dependencies = []
+dependencies = [
+    "fastapi==0.115.12",
+    "pydantic==2.11.7",
+]
 
 [dependency-groups]
 dev = [

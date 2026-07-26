@@ -47,4 +47,4 @@ jobs:
       - name: Type-check Python
         run: uv run mypy src tests
       - name: Test Python
-        run: uv run pytest -m "not managed_dev"
+        run: uv run python -m pytest -m "not managed_dev"
