@@ -102,15 +102,11 @@
         {
           "if": {
             "properties": {
-              "kind": {
-                "const": "factual"
-              },
               "support": {
                 "const": "direct"
               }
             },
             "required": [
-              "kind",
               "support"
             ]
           },

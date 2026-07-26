@@ -166,8 +166,8 @@ def use_unknown_support(payload: dict[str, Any]) -> None:
     payload["claims"][0]["support"] = "future"
 
 
-def use_uncited_direct_factual_claim(payload: dict[str, Any]) -> None:
-    payload["claims"][0]["kind"] = "factual"
+def use_uncited_direct_claim(payload: dict[str, Any], kind: str) -> None:
+    payload["claims"][0]["kind"] = kind
     payload["claims"][0]["support"] = "direct"
 
 
@@ -195,10 +195,6 @@ def test_canonical_report_accepts_complete_resolvable_contract() -> None:
             use_unknown_support,
             "Input should be",
         ),
-        (
-            use_uncited_direct_factual_claim,
-            "direct factual claims require at least one citation_source_id",
-        ),
     ],
 )
 def test_canonical_report_rejects_invalid_contracts(
@@ -212,6 +208,31 @@ def test_canonical_report_rejects_invalid_contracts(
 
     assert raised.value.code == "contract_validation_failed"
     assert any(expected_message in issue.message for issue in raised.value.issues)
+
+
+@pytest.mark.contract
+@pytest.mark.parametrize("kind", ["factual", "recommendation", "assumption", "limitation"])
+def test_canonical_report_rejects_uncited_direct_claims_for_every_kind(kind: str) -> None:
+    payload = deepcopy(valid_report_payload())
+    use_uncited_direct_claim(payload, kind)
+
+    with pytest.raises(ContractValidationError) as raised:
+        parse_contract(CanonicalReport, payload)
+
+    assert any(
+        "direct claims require at least one citation_source_id" in issue.message
+        for issue in raised.value.issues
+    )
+
+
+@pytest.mark.contract
+def test_canonical_report_allows_uncited_non_direct_claim() -> None:
+    payload = deepcopy(valid_report_payload())
+    payload["claims"][0]["support"] = "assumed"
+
+    report = parse_contract(CanonicalReport, payload)
+
+    assert report.claims[0].citation_source_ids == []
 
 
 @pytest.mark.contract
@@ -284,10 +305,9 @@ def test_generated_schemas_require_citations_and_resolvable_event_mappings() -> 
     assert {
         "if": {
             "properties": {
-                "kind": {"const": "factual"},
                 "support": {"const": "direct"},
             },
-            "required": ["kind", "support"],
+            "required": ["support"],
         },
         "then": {"properties": {"citation_source_ids": {"minItems": 1}}},
     } in claim_schema["allOf"]
