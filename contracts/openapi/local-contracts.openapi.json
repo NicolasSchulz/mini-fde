@@ -448,6 +448,31 @@
       },
       "Claim": {
         "additionalProperties": false,
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "kind": {
+                  "const": "factual"
+                },
+                "support": {
+                  "const": "direct"
+                }
+              },
+              "required": [
+                "kind",
+                "support"
+              ]
+            },
+            "then": {
+              "properties": {
+                "citation_source_ids": {
+                  "minItems": 1
+                }
+              }
+            }
+          }
+        ],
         "properties": {
           "citation_source_ids": {
             "items": {
@@ -1876,12 +1901,12 @@
       "PublicEvent": {
         "discriminator": {
           "mapping": {
-            "clarification.required": "#/$defs/ClarificationRequiredEvent",
-            "phase.completed": "#/$defs/PhaseCompletedEvent",
-            "phase.started": "#/$defs/PhaseStartedEvent",
-            "run.accepted": "#/$defs/RunAcceptedEvent",
-            "run.completed": "#/$defs/RunCompletedEvent",
-            "run.failed": "#/$defs/RunFailedEvent"
+            "clarification.required": "#/components/schemas/ClarificationRequiredEvent",
+            "phase.completed": "#/components/schemas/PhaseCompletedEvent",
+            "phase.started": "#/components/schemas/PhaseStartedEvent",
+            "run.accepted": "#/components/schemas/RunAcceptedEvent",
+            "run.completed": "#/components/schemas/RunCompletedEvent",
+            "run.failed": "#/components/schemas/RunFailedEvent"
           },
           "propertyName": "event"
         },

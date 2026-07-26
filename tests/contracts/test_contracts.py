@@ -9,6 +9,7 @@ from pydantic import ValidationError
 
 from mini_fde.contracts.base import ContractValidationError, parse_contract
 from mini_fde.contracts.events import PUBLIC_EVENT_ADAPTER, RunAcceptedEvent
+from mini_fde.contracts.openapi import build_openapi_document
 from mini_fde.contracts.report import CanonicalReport
 from mini_fde.contracts.workflow import GraphInputSnapshot, TerminalResult
 from scripts.generate_contract_artifacts import generate
@@ -165,6 +166,11 @@ def use_unknown_support(payload: dict[str, Any]) -> None:
     payload["claims"][0]["support"] = "future"
 
 
+def use_uncited_direct_factual_claim(payload: dict[str, Any]) -> None:
+    payload["claims"][0]["kind"] = "factual"
+    payload["claims"][0]["support"] = "direct"
+
+
 @pytest.mark.contract
 def test_canonical_report_accepts_complete_resolvable_contract() -> None:
     report = parse_contract(CanonicalReport, valid_report_payload())
@@ -188,6 +194,10 @@ def test_canonical_report_accepts_complete_resolvable_contract() -> None:
         (
             use_unknown_support,
             "Input should be",
+        ),
+        (
+            use_uncited_direct_factual_claim,
+            "direct factual claims require at least one citation_source_id",
         ),
     ],
 )
@@ -266,6 +276,29 @@ def test_public_events_reject_private_output_and_terminal_results_require_refere
                 "retryable": False,
             },
         )
+
+
+@pytest.mark.contract
+def test_generated_schemas_require_citations_and_resolvable_event_mappings() -> None:
+    claim_schema = CanonicalReport.model_json_schema()["$defs"]["Claim"]
+    assert {
+        "if": {
+            "properties": {
+                "kind": {"const": "factual"},
+                "support": {"const": "direct"},
+            },
+            "required": ["kind", "support"],
+        },
+        "then": {"properties": {"citation_source_ids": {"minItems": 1}}},
+    } in claim_schema["allOf"]
+
+    schemas = build_openapi_document()["components"]["schemas"]
+    mappings = schemas["PublicEvent"]["discriminator"]["mapping"]
+    assert all(
+        reference.startswith("#/components/schemas/")
+        and reference.removeprefix("#/components/schemas/") in schemas
+        for reference in mappings.values()
+    )
 
 
 @pytest.mark.contract

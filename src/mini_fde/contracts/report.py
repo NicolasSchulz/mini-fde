@@ -6,7 +6,7 @@ from datetime import date
 from typing import Annotated, Literal
 from uuid import UUID
 
-from pydantic import AnyHttpUrl, Field, field_validator, model_validator
+from pydantic import AnyHttpUrl, ConfigDict, Field, field_validator, model_validator
 
 from mini_fde.contracts.base import (
     CONTRACT_VERSION,
@@ -71,11 +71,36 @@ AnnotatedDomain = Annotated[
 
 
 class Claim(ContractModel):
+    model_config = ConfigDict(
+        json_schema_extra={
+            "x-contract-version": CONTRACT_VERSION,
+            "allOf": [
+                {
+                    "if": {
+                        "properties": {
+                            "kind": {"const": "factual"},
+                            "support": {"const": "direct"},
+                        },
+                        "required": ["kind", "support"],
+                    },
+                    "then": {"properties": {"citation_source_ids": {"minItems": 1}}},
+                }
+            ],
+        }
+    )
+
     claim_id: NonEmptyString
     text: NonEmptyString
     kind: Literal["factual", "recommendation", "assumption", "limitation"]
     citation_source_ids: list[SourceId]
     support: Literal["direct", "synthesized", "assumed", "unsupported"]
+
+    @model_validator(mode="after")
+    def direct_factual_claim_requires_citation(self) -> Claim:
+        if self.kind == "factual" and self.support == "direct" and not self.citation_source_ids:
+            msg = "direct factual claims require at least one citation_source_id"
+            raise ValueError(msg)
+        return self
 
 
 class Requirement(ContractModel):

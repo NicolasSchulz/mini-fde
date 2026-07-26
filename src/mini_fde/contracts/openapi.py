@@ -21,6 +21,16 @@ def _replace_definition_references(value: Any) -> Any:
             key: (
                 f"#/components/schemas/{child.removeprefix('#/$defs/')}"
                 if key == "$ref" and isinstance(child, str) and child.startswith("#/$defs/")
+                else {
+                    mapping_key: (
+                        f"#/components/schemas/{mapping_reference.removeprefix('#/$defs/')}"
+                        if isinstance(mapping_reference, str)
+                        and mapping_reference.startswith("#/$defs/")
+                        else _replace_definition_references(mapping_reference)
+                    )
+                    for mapping_key, mapping_reference in child.items()
+                }
+                if key == "mapping" and isinstance(child, dict)
                 else _replace_definition_references(child)
             )
             for key, child in value.items()

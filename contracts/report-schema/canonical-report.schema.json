@@ -98,6 +98,31 @@
     },
     "Claim": {
       "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "factual"
+              },
+              "support": {
+                "const": "direct"
+              }
+            },
+            "required": [
+              "kind",
+              "support"
+            ]
+          },
+          "then": {
+            "properties": {
+              "citation_source_ids": {
+                "minItems": 1
+              }
+            }
+          }
+        }
+      ],
       "properties": {
         "citation_source_ids": {
           "items": {
